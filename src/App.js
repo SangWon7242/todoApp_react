@@ -18,6 +18,11 @@ function App() {
     setNumbersRecord([...numbersRecord, number]);
   };
 
+  const removeNumber = (index) => {
+    const new_numbers = numbersRecord.filter((_, _index) => _index !== index);
+    setNumbersRecord(new_numbers);
+  };
+
   const resetRecord = () => {
     setNumber(0);
     setNumbersRecord([]);
@@ -32,7 +37,11 @@ function App() {
             <ul>
               {numbersRecord.map((value, index) => (
                 <li key={index}>
-                  {index + 1}번 : {value}
+                  <span>
+                    {index + 1}번 : {value}
+                  </span>
+                  &nbsp;
+                  <button onClick={() => removeNumber(index)}>삭제</button>
                 </li>
               ))}
             </ul>
