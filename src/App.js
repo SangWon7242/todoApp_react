@@ -13,11 +13,6 @@ function App() {
   return (
     <>
       <div>숫자 : {number}</div>
-      {numbersRecord.length !== 0 ? (
-        <div>기록 된 숫자 : {JSON.stringify(numbersRecord)}</div>
-      ) : (
-        <div>기록 없음</div>
-      )}
       <div>
         <button onClick={() => setNumber(number + 1)}>증가</button>
         &nbsp;
@@ -34,6 +29,19 @@ function App() {
           초기화
         </button>
       </div>
+      {numbersRecord.length !== 0 ? (
+        <nav>
+          <ul>
+            {numbersRecord.map((value, index) => (
+              <li key={index}>
+                {index + 1}번 : {value}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : (
+        <h1>기록 없음</h1>
+      )}
     </>
   );
 }
