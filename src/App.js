@@ -5,6 +5,11 @@ function App() {
   const [number, setNumber] = useState(0);
   const [numbersRecord, setNumbersRecord] = useState([]);
 
+  const saveNumbers = () => {
+    setNumber(0);
+    setNumbersRecord([...numbersRecord, number]);
+  };
+
   return (
     <>
       <div>숫자 : {number}</div>
@@ -18,14 +23,7 @@ function App() {
         &nbsp;
         <button onClick={() => setNumber(number - 1)}>감소</button>
         &nbsp;
-        <button
-          onClick={() => {
-            setNumber(0);
-            setNumbersRecord([...numbersRecord, number]);
-          }}
-        >
-          기록
-        </button>
+        <button onClick={() => saveNumbers()}>기록</button>
         &nbsp;
         <button
           onClick={() => {
