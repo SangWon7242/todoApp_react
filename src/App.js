@@ -25,13 +25,33 @@ const NumberRecordForm = ({
 };
 
 const NumberRecordListItem = ({ number, index, removeNumber }) => {
+  const [editModeStatus, setEditModeStatus] = useState(false);
+
   return (
     <li key={index}>
-      <span>
-        {index + 1}번 : {number}
-      </span>
-      &nbsp;
-      <button onClick={() => removeNumber(index)}>삭제</button>
+      {editModeStatus ? (
+        <>
+          <input
+            type="number"
+            value={number}
+            placeholder="숫자를 입력해주세요."
+          />
+          &nbsp;
+          <button onClick={() => setEditModeStatus(false)}>수정완료</button>
+          &nbsp;
+          <button onClick={() => setEditModeStatus(false)}>수정취소</button>
+        </>
+      ) : (
+        <>
+          <span>
+            {index + 1}번 : {number}
+          </span>
+          &nbsp;
+          <button onClick={() => setEditModeStatus(true)}>수정</button>
+          &nbsp;
+          <button onClick={() => removeNumber(index)}>삭제</button>
+        </>
+      )}
     </li>
   );
 };
