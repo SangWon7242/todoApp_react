@@ -25,6 +25,7 @@ const NumberRecordForm = ({
 };
 
 const NumberRecordListItem = ({ number, index, removeNumber }) => {
+  const [inputNumberValue, setInputNumberValue] = useState(number);
   const [editModeStatus, setEditModeStatus] = useState(false);
 
   return (
@@ -33,8 +34,10 @@ const NumberRecordListItem = ({ number, index, removeNumber }) => {
         <>
           <input
             type="number"
-            value={number}
+            value={inputNumberValue}
             placeholder="숫자를 입력해주세요."
+            min="1"
+            onChange={(e) => setInputNumberValue(e.target.value)}
           />
           &nbsp;
           <button onClick={() => setEditModeStatus(false)}>수정완료</button>
