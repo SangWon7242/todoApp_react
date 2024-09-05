@@ -24,6 +24,18 @@ const NumberRecordForm = ({
   );
 };
 
+const NumberRecordListItem = ({ number, index, removeNumber }) => {
+  return (
+    <li key={index}>
+      <span>
+        {index + 1}번 : {number}
+      </span>
+      &nbsp;
+      <button onClick={() => removeNumber(index)}>삭제</button>
+    </li>
+  );
+};
+
 const NumberRecordList = ({ numbersRecord, removeNumber }) => {
   if (numbersRecord.length !== 0) {
     return (
@@ -31,14 +43,12 @@ const NumberRecordList = ({ numbersRecord, removeNumber }) => {
         <h1>숫자 기록</h1>
         <nav>
           <ul>
-            {numbersRecord.map((value, index) => (
-              <li key={index}>
-                <span>
-                  {index + 1}번 : {value}
-                </span>
-                &nbsp;
-                <button onClick={() => removeNumber(index)}>삭제</button>
-              </li>
+            {numbersRecord.map((number, index) => (
+              <NumberRecordListItem
+                number={number}
+                index={index}
+                removeNumber={removeNumber}
+              />
             ))}
           </ul>
         </nav>
